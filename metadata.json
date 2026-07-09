@@ -1,0 +1,6 @@
+{
+  "name": "Fruit Puzzle",
+  "description": "A highly polished, photorealistic Match-3 fruit puzzle game with powerful boosters and responsive animations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

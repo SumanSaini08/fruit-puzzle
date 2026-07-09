@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    overflow-y: auto;
+    overflow-x: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    scroll-behavior: smooth;
+    background-color: #ffffff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark body {
+    background-color: #09090b;
+}
+
+/* Custom smooth animations & scroll physics */
+@keyframes fall-in {
+    0% { transform: translateY(-50px) scale(0.65); opacity: 0; }
+    45% { transform: translateY(12px) scale(1.08); }
+    75% { transform: translateY(-4px) scale(0.97); }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.fruit-enter {
+    animation: fall-in 0.42s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translate(0, 0); }
+    15% { transform: translate(-3px, 2px); }
+    30% { transform: translate(3px, -1px); }
+    45% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    75% { transform: translate(-1px, 1px); }
+    90% { transform: translate(1px, -1px); }
+}
+
+.board-shake {
+    animation: shake 0.28s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* High-quality candy/fruit world gradient animations */
+.fruit-world-bg {
+    background: linear-gradient(135deg, #ffffff 0%, #fafafa 50%, #f4f4f5 100%);
+    background-size: 300% 300%;
+}
+
+.dark .fruit-world-bg {
+    background: linear-gradient(135deg, #09090b 0%, #18181b 100%) !important;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Smooth 3D animations for the tiles */
+.fruit-tile {
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
+    cursor: pointer;
+}
+
+.fruit-tile:active {
+    transform: scale(0.85);
+}
+
+.selected {
+    transform: scale(1.1);
+    outline: 4px solid #ffffff;
+    outline-offset: -4px;
+    z-index: 20;
+    filter: brightness(1.2) drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
+    border-radius: 16px;
+    animation: pulse-border 1.2s infinite alternate;
+}
+
+@keyframes pulse-border {
+    0% { outline-color: #ffffff; }
+    100% { outline-color: #ffd700; }
+}
+
+.match-anim {
+    animation: pop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.5) forwards;
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); opacity: 0.9; filter: brightness(1.5); }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+/* Sparkles and floating elements */
+.floating {
+    animation: floating 4s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+/* Custom scrollbar for levels */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+}
+
+/* Grid aspect-ratio container */
+.game-grid-container {
+    aspect-ratio: 1 / 1;
+    max-width: min(92vw, 460px);
+    margin: 0 auto;
+}
+
+/* Glow effects */
+.glow-green {
+    box-shadow: 0 10px 25px -5px rgba(34, 197, 94, 0.4), 0 8px 10px -6px rgba(34, 197, 94, 0.4);
+}
+.glow-pink {
+    box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.4), 0 8px 10px -6px rgba(236, 72, 153, 0.4);
+}
+
+/* Particle styling */
+.particle {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    animation: particleFly 0.7s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
+}
+
+@keyframes particleFly {
+    0% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; filter: brightness(1.3); }
+    100% { transform: translate(var(--mx), var(--my)) scale(0.1); opacity: 0; filter: brightness(0.6); }
+}
+
+/* Beautiful color-coordinated pop shockwave for all normal pairs/matches */
+.pop-shockwave {
+    position: absolute;
+    pointer-events: none;
+    border: 3.5px solid var(--wave-color, #ffffff);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 75%);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    z-index: 30;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.95;
+    box-shadow: 0 0 15px var(--wave-color, #ffffff);
+    animation: popWaveExpand 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+
+@keyframes popWaveExpand {
+    0% { transform: translate(-50%, -50%) scale(0.4); opacity: 0.95; }
+    100% { transform: translate(-50%, -50%) scale(6.2); opacity: 0; }
+}
+
+/* Mega Bomb Blast Effects matching 4+ fruits */
+.mega-particle {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 40;
+    box-shadow: 0 0 10px rgba(253, 224, 71, 0.8), 0 0 20px rgba(239, 68, 68, 0.6);
+    animation: megaParticleFly 0.8s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+@keyframes megaParticleFly {
+    0% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+    50% { opacity: 1; filter: brightness(1.7); }
+    100% { transform: translate(var(--mx), var(--my)) scale(0); opacity: 0; filter: grayscale(1); }
+}
+
+.mega-shockwave {
+    position: absolute;
+    pointer-events: none;
+    border: 3px solid #facc15;
+    background: radial-gradient(circle, rgba(239, 68, 68, 0.4) 0%, rgba(250, 204, 21, 0) 70%);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    z-index: 35;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.95;
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.5);
+    animation: shockwaveExpand 0.65s cubic-bezier(0.1, 0.8, 0.15, 1) forwards;
+}
+
+@keyframes shockwaveExpand {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.95; }
+    100% { transform: translate(-50%, -50%) scale(14); opacity: 0; border-color: #ef4444; border-width: 1px; }
+}
+
+/* Super intense shake for matching 4+ fruits */
+.board-heavy-shake {
+    animation: heavy-shake 0.38s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes heavy-shake {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    10% { transform: translate(-6px, 4px) rotate(-1.5deg); }
+    20% { transform: translate(6px, -3px) rotate(1.5deg); }
+    30% { transform: translate(-5px, -5px) rotate(-1deg); }
+    40% { transform: translate(5px, 4px) rotate(1deg); }
+    50% { transform: translate(-3px, 3px) rotate(-0.5deg); }
+    60% { transform: translate(3px, -2px) rotate(0.5deg); }
+    70% { transform: translate(-2px, 1px) rotate(-0.2deg); }
+    80% { transform: translate(2px, -1px) rotate(0.2deg); }
+    90% { transform: translate(-1px, 1px) rotate(0deg); }
+}
+
+/* Splash Text banner animation */
+.bomb-match-badge {
+    animation: badgePopFade 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes badgePopFade {
+    0% { transform: scale(0.4) rotate(-5deg); opacity: 0; }
+    20% { transform: scale(1.15) rotate(3deg); opacity: 1; }
+    30% { transform: scale(1) rotate(0deg); opacity: 1; }
+    80% { transform: scale(0.95); opacity: 1; }
+    100% { transform: translateY(-30px) scale(0.85); opacity: 0; }
+}
+
+
