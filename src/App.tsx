@@ -92,7 +92,7 @@ const FRUIT_TYPES = ['apple', 'orange', 'grapes', 'banana', 'blueberry', 'kiwi']
 const BOARD_SIZE = 8;
 
 export default function App() {
-    // Persistent profile state loading
+    // Persistent profile state loading game
     const [currentLang, setCurrentLang] = useState<Language>('en');
     const [screen, setScreen] = useState<'login' | 'home' | 'level-selection' | 'game-screen'>('login');
     const [modal, setModal] = useState<'game-over' | 'pause' | 'settings' | 'tutorial' | null>(null);
