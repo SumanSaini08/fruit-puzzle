@@ -10,7 +10,8 @@ Fruit Puzzle is a casual match-3 game inspired by classic titles like Candy Crus
 
 🔗 **Play it here:** _[https://candid-choux-08e8db.netlify.app/]_
 
-<img width="444" height="590" alt="fruit puzzle" src="https://github.com/user-attachments/assets/4012644e-2922-476d-a1b2-acd630e04965" />
+<img width="1345" height="631" alt="fruit puzzle 2" src="https://github.com/user-attachments/assets/78118c2c-b616-40af-9c9d-b0e039fbdeef" />
+
 
 ## ✨ Features
 
