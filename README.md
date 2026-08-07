@@ -1,3 +1,4 @@
+<img width="736" height="736" alt="WhatsApp Image 2025-08-14 at 5 44 03 AM" src="https://github.com/user-attachments/assets/32a41bd5-404d-4780-955e-6329141b4a7c" />
 # Fruit Puzzle 🍇🍊🍓
 
 A fun and engaging match-3 puzzle game where players match fruits to score points and progress through increasingly challenging levels. Built with TypeScript and deployed live on Render.
