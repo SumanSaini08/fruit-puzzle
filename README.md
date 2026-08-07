@@ -63,6 +63,7 @@ fruit-puzzle/
 5. Open the app in your browser at the local URL shown in the terminal
 
 ## 🕹️ How to Play
+<img width="1346" height="642" alt="game" src="https://github.com/user-attachments/assets/443f83a6-0d10-457a-9ccc-94910aa8f1fc" />
 
 1. Swap two adjacent fruits to form a line of three or more matching fruits
 2. Matched fruits are cleared from the board and points are added to your score
